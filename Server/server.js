@@ -23,7 +23,14 @@ const { User } = require('./models/user')
 //====================================
 
 app.post('api/users/register', (req,res)=>{
-    res.status(200);
+    const user = new User(req.body)
+
+    user.save((err,doc)=>{
+        if(err) return res.json({success:false,err});
+
+    })
+
+    
 })
 
 const port = process.env.PORT || 3002;
